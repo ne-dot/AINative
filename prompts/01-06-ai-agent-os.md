@@ -1,0 +1,1 @@
+A futuristic operating system where applications fade into the background while an intelligent AI agent stands at the center orchestrating calendars, coding, design, writing, search, communication and automation. Elegant sci-fi illustration, cinematic lighting, blue technology colors, no text, 16:9

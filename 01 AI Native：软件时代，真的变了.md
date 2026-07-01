@@ -8,7 +8,7 @@
 
 ---
 
-![封面](../images/01-01-cover.png)
+![封面](https://weizhenan2.tos-cn-guangzhou.volces.com/01-01-cover.png)
 
 很多人第一次听到 **AI Native**，第一反应都是：
 
@@ -46,7 +46,7 @@ AI Native 并不是一个营销词。
 
 ## 一、过去的软件，是让人适应机器
 
-![图2：过去的软件，让人适应机器](../images/01-02-human-adapt-machine.png)
+![图2：过去的软件，让人适应机器](https://weizhenan2.tos-cn-guangzhou.volces.com/01-02-human-adapt-machine.png)
 
 过去二十多年，几乎所有软件都遵循同一种模式：
 
@@ -78,7 +78,7 @@ AI Native 并不是一个营销词。
 
 ## 二、传统软件的核心，是规则
 
-![图3：规则驱动的软件](../images/01-03-rule-based-software.png)
+![图3：规则驱动的软件](https://weizhenan2.tos-cn-guangzhou.volces.com/01-03-rule-based-software.png)
 
 传统软件为什么必须让人学习？
 
@@ -124,7 +124,7 @@ AI Native 并不是一个营销词。
 
 ## 三、AI 改变了最关键的一件事
 
-![图4：软件第一次开始理解人](../images/01-04-ai-understand-human.png)
+![图4：软件第一次开始理解人](https://weizhenan2.tos-cn-guangzhou.volces.com/01-04-ai-understand-human.png)
 
 ChatGPT 真正改变的，并不是聊天。
 
@@ -178,7 +178,7 @@ AI 需要理解会议内容。
 
 ## 四、AI Native 不是 App 加 AI
 
-![图5：AI 成为产品的大脑](../images/01-05-ai-native-core.png)
+![图5：AI 成为产品的大脑](https://weizhenan2.tos-cn-guangzhou.volces.com/01-05-ai-native-core.png)
 
 很多产品今天都会说自己是 AI Native。
 
@@ -226,7 +226,7 @@ Database。
 
 ## 五、软件时代为什么真的变了
 
-![图7：软件时代的演进](../images/01-07-software-evolution.png)
+![图7：软件时代的演进](https://weizhenan2.tos-cn-guangzhou.volces.com/01-07-software-evolution.png)
 
 每一次软件时代的变化，都不是因为多了几个功能。
 

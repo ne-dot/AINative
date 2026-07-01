@@ -1,0 +1,1 @@
+Timeline of software evolution from Desktop Software → Mobile Apps → Cloud Computing → AI Native, each era represented by iconic interface styles connected with luminous arrows, futuristic infographic illustration, blue technology theme, clean minimal design, no text, 16:9

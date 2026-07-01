@@ -1,0 +1,1 @@
+Split-screen comparison. Left side: traditional software with many buttons, menus, windows, complex UI. Right side: AI Native assistant communicating naturally with user through conversation and autonomous execution. Modern flat illustration, futuristic blue gradients, clean composition, no text, 16:9

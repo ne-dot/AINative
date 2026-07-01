@@ -1,0 +1,1 @@
+A futuristic female AI scientist standing in a vast digital laboratory, holographic interfaces floating around her, glowing neural networks connecting countless software applications, blue and white color palette, cinematic lighting, ultra detailed, clean composition, AI Native era begins, technology illustration, no text, 16:9

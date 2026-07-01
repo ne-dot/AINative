@@ -1,0 +1,1 @@
+A person overwhelmed by hundreds of application icons, notifications, windows, floating around in digital space, feeling confused, while AI organizes everything into one intelligent workflow. Futuristic illustration, soft blue lighting, clean composition, no text, 16:9

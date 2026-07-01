@@ -60,8 +60,40 @@ Season 1 主要建立基础世界观，先回答“为什么 AI Native 重要”
 ├── 00 AI Native: 内容大纲.md
 ├── 01-06 AI Native 系列文章
 ├── images/     # 文章配图
-└── prompts/    # 配图生成提示词
+├── prompts/    # 配图生成提示词
+└── tools/      # 发布与生成工具
 ```
+
+## Medium 发布辅助
+
+把 Markdown 转成 Medium 可粘贴的 HTML：
+
+```bash
+python3 tools/medium_publish_helper.py "01 AI Native: The Software Era Has Really Changed.md" --copy none
+```
+
+输出文件会生成到 `dist/medium/`。没有配置图床时，图片会先使用本地 `file://` 地址，适合预览，不适合直接发到 Medium。
+
+使用当前 GitHub 仓库作为图床，不需要 token：
+
+```bash
+python3 tools/medium_publish_helper.py "01 AI Native: The Software Era Has Really Changed.md" --uploader repo
+```
+
+这个模式会根据 `origin` 自动生成 `raw.githubusercontent.com` 图片地址。使用前需要先把图片 commit 并 push 到公开仓库，否则 Medium 访问不到图片。
+
+使用 GitHub API 上传到指定仓库，需要 token：
+
+```bash
+export GITHUB_TOKEN="你的 token"
+export MEDIUM_IMAGE_GITHUB_REPO="owner/repo"
+export MEDIUM_IMAGE_GITHUB_BRANCH="main"
+export MEDIUM_IMAGE_GITHUB_DIR="ai-native/medium"
+
+python3 tools/medium_publish_helper.py "01 AI Native: The Software Era Has Really Changed.md" --uploader github
+```
+
+脚本会上传本地图片、替换图片 URL、生成 HTML，并尝试把富文本 HTML 放进 macOS 剪贴板。然后打开 Medium 新文章页，`Cmd + A`、`Cmd + V` 即可。GitHub 仓库需要是公开仓库，否则 Medium 读不到图片。
 
 ---
 
