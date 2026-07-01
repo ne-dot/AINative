@@ -1,0 +1,1 @@
+A premium Apple keynote style horizontal timeline: iMac → iPod → iPhone → iPad → Apple Watch → Future AI Device (represented by a glowing abstract object with a question mark). Minimal white background, elegant glowing timeline, clean presentation style, blue AI lighting, ultra detailed, 16:9.

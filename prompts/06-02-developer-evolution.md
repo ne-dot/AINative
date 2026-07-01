@@ -1,0 +1,1 @@
+Modern flat illustration showing the evolution of an independent developer, left side creating only mobile apps and websites, right side creating AI tools, frameworks, workflows, MCP servers, reusable capabilities and AI products, clean infographic style, minimal blue technology theme, white background, isometric design

@@ -1,0 +1,1 @@
+A futuristic AI assistant talking with a human professional. Transparent memory streams connect previous conversations, preferences, projects and personal habits into the AI brain. The AI understands intent rather than commands. Elegant blue holograms, documentary technology style, ultra realistic, clean background, no text, no watermark.

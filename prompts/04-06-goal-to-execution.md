@@ -1,0 +1,1 @@
+A futuristic workflow diagram showing Goal → AI Understanding → Automatic Prompt Generation → Tool Calling → Execution → Final Result. The human only interacts with the Goal input, while the AI handles all internal reasoning and execution. Elegant holographic workflow, clean technology infographic, blue lighting, premium product presentation style, no text.

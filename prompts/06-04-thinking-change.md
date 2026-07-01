@@ -1,0 +1,1 @@
+Split-screen conceptual illustration comparing developer mindset, left side traditional thinking “Build an App” showing one isolated application serving users, right side AI Native thinking “Create Value for the Ecosystem” showing interconnected AI agents, reusable capabilities, developers and users, modern vector illustration, clean white background, blue technology theme

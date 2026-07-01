@@ -1,0 +1,1 @@
+Four glowing pillars floating in futuristic space, labeled conceptually as Understanding, Memory, Tools, Action (without visible text). Each pillar emits different colored energy and connects into one intelligent AI core in the center. High-end sci-fi infographic style, Apple keynote aesthetics, blue neon lighting, ultra detailed, no text, no watermark.
