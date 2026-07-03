@@ -4,7 +4,7 @@
 
 ---
 
-![封面：AI Native 软件范式](../images/02-01-cover.png)
+![封面：AI Native 软件范式](https://weizhenan2.tos-cn-guangzhou.volces.com/02-01-cover.png)
 
 第一次看到这句话，很多人可能会觉得有些夸张。
 
@@ -38,7 +38,7 @@ Photoshop 有修图功能。
 
 ## 一、传统软件的基本单位是功能
 
-![传统软件：功能驱动](../images/02-01-function-driven.png)
+![传统软件：功能驱动](https://weizhenan2.tos-cn-guangzhou.volces.com/02-01-function-driven.png)
 
 传统软件为什么会围绕功能设计？
 
@@ -86,7 +86,7 @@ Photoshop 有修图功能。
 
 ## 二、AI Native 的基本单位是目标
 
-![从按钮，到目标](../images/02-02-button-to-goal.png)
+![从按钮，到目标](https://weizhenan2.tos-cn-guangzhou.volces.com/02-02-button-to-goal.png)
 
 AI Native 改变的第一件事，并不是界面。
 
@@ -184,7 +184,7 @@ AI Native 改变的第一件事，并不是界面。
 
 ## 四、从功能驱动，到目标驱动
 
-![从功能驱动，到目标驱动](../images/02-03-goal-driven.png)
+![从功能驱动，到目标驱动](https://weizhenan2.tos-cn-guangzhou.volces.com/02-03-goal-driven.png)
 
 我们可以把传统软件和 AI Native 放在一起看：
 
