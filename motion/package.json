@@ -6,10 +6,15 @@
   "scripts": {
     "dev": "remotion studio",
     "render:flow-traditional": "remotion render src/index.ts FlowTraditional out/flow-traditional.mp4",
-    "render:flow-ai-native": "remotion render src/index.ts FlowAiNative out/flow-ai-native.mp4"
+    "render:flow-ai-native": "remotion render src/index.ts FlowAiNative out/flow-ai-native.mp4",
+    "render:map-demo": "remotion render src/index.ts MapDemo out/map-demo.mp4 --gl=angle --concurrency=1",
+    "render:milk-tea-heatmap": "remotion render src/index.ts MilkTeaHeatmapDemo out/milk-tea-heatmap.mp4 --gl=angle --concurrency=1"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.272",
+    "@remotion/transitions": "^4.0.484",
+    "@turf/turf": "^7.3.5",
+    "maplibre-gl": "^5.24.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remotion": "^4.0.272"

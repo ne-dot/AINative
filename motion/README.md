@@ -12,6 +12,9 @@ npm run dev
 
 浏览器打开 Remotion Studio，预览：
 
+- `MilkTeaHeatmapDemo` — 各省奶茶店数量色阶地图（省界填色，示意数据）
+- `MapDemo` — MapLibre 地图 + 北京→上海航线动画（[Maps 文档](https://www.remotion.dev/docs/maps)）
+- `TransitionDemo` — TransitionSeries slide 转场（传统软件 → AI Native）
 - `AiBrainOrbitDemo` — icon 围绕 AI 核心 3D 旋转（`public/` + `staticFile()`）
 - `TransformsDemo` — 五种 CSS 变换（opacity / scale / skew / translate / rotate）
 - `SequenceDemo` — Sequence 分段：Hello → World
@@ -24,6 +27,7 @@ npm run dev
 ```bash
 npm run render:flow-traditional
 npm run render:flow-ai-native
+npm run render:map-demo   # WebGL 地图需 --gl=angle --concurrency=1
 ```
 
 输出到 `motion/out/`。
@@ -36,6 +40,7 @@ npm run render:flow-ai-native
 
 ```text
 motion/
+├── public/geo/         # 中国省界 GeoJSON
 ├── public/icons/       # 静态资源（用 staticFile() 引用）
 ├── src/compositions/   # 动画组件
 ├── src/components/     # 节点、背景等
