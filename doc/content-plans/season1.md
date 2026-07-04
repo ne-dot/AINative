@@ -302,6 +302,7 @@ Cursor / Perplexity / NotebookLM：前台一句，后台复杂
 
 - OpenAI × Jony Ive；
 - 东京旅行；
+- 扣子 3.0（项目空间、多 Agent 协作、多端调度）；
 - Simon Willison；
 - Browser Use；
 - FastMCP。
@@ -323,6 +324,8 @@ Hook：用户为什么还要知道打开哪个 App？
     ↓
 AI 调度：一句目标，组合工具
     ↓
+扣子 3.0：项目空间 + 多 Agent 协作（现实案例，可选）
+    ↓
 OpenAI × Jony Ive：重新设计入口
     ↓
 结论：找软件变成 AI 的工作
@@ -333,6 +336,7 @@ OpenAI × Jony Ive：重新设计入口
 - App 图标墙；
 - 用户目标输入；
 - AI 调度多个服务；
+- 项目空间 / Agent 团队 / 多端同步；
 - 结果卡片输出。
 
 #### 04-B：独立开发者别只问做什么 App

@@ -1,0 +1,52 @@
+---
+description: AI Native 项目的内容定位、写作原则和规划入口
+alwaysApply: true
+---
+
+# AI Native 内容项目规则
+
+本项目长期研究：**AI 如何把软件从“功能系统”推向“目标执行系统”。**
+
+核心判断：
+
+- AI Native 不是 AI 工具合集，也不是传统软件加 AI 按钮。
+- 过去软件围绕功能；未来软件围绕目标。
+- 过去用户寻找功能和 App；未来用户表达目标，由 AI 调度能力、工具和服务。
+- 内容优先服务独立开发者、程序员、产品经理和 AI 产品创业者。
+
+写文章、脚本和规划时：
+
+- 不从概念开场，先从观众真实问题开场。
+- 每篇内容必须有真实场景或真实产品案例。
+- 如果市场上没有成熟案例，用动画 Demo 讲清产品形态。
+- 避免纯理论、空泛判断、重复铺垫和为了凑篇数硬拆概念。
+- 正文不要写“本篇范围”“不重复”“独家例子”等内部备忘；这些放到规划文档。
+- 视频不要直接朗读 Markdown，要重写成：问题开场 → 产品案例 → 动画 Demo → 一句结论。
+
+规划入口：
+
+- 总纲：`doc/00 AI Native: 内容大纲.md`
+- 项目立意：`doc/00 AI Native：立项、愿景与目标.md`
+- Season 规划：`doc/content-plans/`
+- Season 1 规划：`doc/content-plans/season1.md`
+- Season 2 规划：`doc/content-plans/season2.md`
+- Remotion 动画项目：`motion/`
+
+Season 1 现有结构：
+
+```text
+01 软件时代，真的变了
+02 为什么不是功能升级，而是新范式
+03 真正的 AI Native 产品长什么样
+04 新入口、新生态与独立开发者
+```
+
+motion 规则：
+
+- `motion/` 是 AI Native 视频的 Remotion 说明动画项目，不是独立产品。
+- 动画必须服务于“讲清机制”，优先做流程对比、责任分工、前台/后台、入口调度、生态分层。
+- 不要用动画做抽象装饰；观众关掉声音也应能看懂这一段在讲什么。
+- 优先用可控的 Remotion 动画、产品录屏和静态图，避免依赖 AI 生成视频。
+- 可复用组件放在 `motion/src/compositions/` 和 `motion/src/components/`。
+- 文案/步骤优先配置在 `motion/stories/*.json`，如 `FlowTraditional` / `FlowAiNative` 使用 `FlowDiagram`。
+- 新增动画时同步注册到 `motion/src/Root.tsx`，必要时补充 `motion/README.md` 的预览和渲染说明。
