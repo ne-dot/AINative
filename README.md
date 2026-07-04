@@ -77,13 +77,11 @@ python3 tools/medium_publish_helper.py \
 
 ## 视频说明动画
 
-科普视频说明动画在 `motion/`（Remotion 工程）：
-
 ```bash
 cd motion && npm install && npm run dev
 ```
 
-详见 [motion/README.md](./motion/README.md)。
+用 Remotion Studio 预览和调试，渲染 MP4 见 [motion/README.md](./motion/README.md)。
 
 ---
 

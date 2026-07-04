@@ -6,6 +6,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { AnimatedBackground } from "../components/AnimatedBackground";
+import { GlowNode } from "../components/GlowNode";
 import { theme } from "../theme/colors";
 
 export type FlowStep = {
@@ -42,9 +44,14 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({
   const nodeRadius = 58;
   const marginX = 180;
   const gap =
-    steps.length > 1
-      ? (width - marginX * 2) / (steps.length - 1)
-      : 0;
+    steps.length > 1 ? (width - marginX * 2) / (steps.length - 1) : 0;
+
+  const titleIn = spring({ frame, fps, config: { damping: 200 } });
+  const subtitleIn = spring({
+    frame: frame - 8,
+    fps,
+    config: { damping: 200 },
+  });
 
   return (
     <AbsoluteFill
@@ -54,6 +61,8 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({
           '"PingFang SC", "Helvetica Neue", "Noto Sans SC", sans-serif',
       }}
     >
+      <AnimatedBackground />
+
       <div
         style={{
           position: "absolute",
@@ -63,6 +72,9 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({
           color: theme.text,
           fontSize: 42,
           fontWeight: 700,
+          opacity: titleIn,
+          transform: `translateY(${interpolate(titleIn, [0, 1], [24, 0])}px)`,
+          textShadow: `0 0 40px ${theme.primary}55`,
         }}
       >
         {title}
@@ -75,34 +87,103 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({
           textAlign: "center",
           color: theme.textMuted,
           fontSize: 24,
+          opacity: subtitleIn,
+          transform: `translateY(${interpolate(subtitleIn, [0, 1], [16, 0])}px)`,
         }}
       >
         {subtitle}
       </div>
 
-      <svg width={width} height={720} style={{ position: "absolute", top: 0 }}>
+      <svg
+        width={width}
+        height={720}
+        style={{ position: "absolute", top: 0, overflow: "visible" }}
+      >
+        <defs>
+          <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor={theme.primaryDim} />
+            <stop offset="100%" stopColor={theme.primary} />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
         {steps.slice(0, -1).map((_, index) => {
           const fromX = marginX + gap * index;
           const toX = marginX + gap * (index + 1);
           const active = index < activeArrows;
-          const progress = active
+          const x1 = fromX + nodeRadius + 20;
+          const x2 = toX - nodeRadius - 20;
+          const lineLength = x2 - x1;
+
+          const drawProgress = active
             ? spring({
                 frame: frame - (index + 1) * STEP_FRAMES,
                 fps,
-                config: { damping: 200 },
+                config: { damping: 18, stiffness: 90 },
               })
             : 0;
 
+          const currentX = x1 + lineLength * drawProgress;
+          const particleT = ((frame - (index + 1) * STEP_FRAMES) % 24) / 24;
+          const particleX =
+            active && drawProgress > 0.95
+              ? x1 + lineLength * particleT
+              : null;
+
           return (
-            <line
-              key={`arrow-${index}`}
-              x1={fromX + nodeRadius + 20}
-              y1={y}
-              x2={fromX + nodeRadius + 20 + (toX - fromX - nodeRadius * 2 - 40) * progress}
-              y2={y}
-              stroke={active ? theme.primary : theme.primaryDim}
-              strokeWidth={active ? 4 : 2}
-            />
+            <g key={`arrow-${index}`}>
+              <line
+                x1={x1}
+                y1={y}
+                x2={x2}
+                y2={y}
+                stroke={theme.primaryDim}
+                strokeWidth={2}
+                opacity={0.35}
+              />
+              <line
+                x1={x1}
+                y1={y}
+                x2={currentX}
+                y2={y}
+                stroke="url(#arrowGradient)"
+                strokeWidth={active ? 5 : 2}
+                strokeLinecap="round"
+                filter={active ? "url(#glow)" : undefined}
+              />
+              {particleX !== null ? (
+                <>
+                  <circle
+                    cx={particleX}
+                    cy={y}
+                    r={10}
+                    fill={theme.primary}
+                    opacity={0.25}
+                    filter="url(#glow)"
+                  />
+                  <circle
+                    cx={particleX}
+                    cy={y}
+                    r={4}
+                    fill="#ffffff"
+                    opacity={0.95}
+                  />
+                </>
+              ) : null}
+              {drawProgress > 0.8 ? (
+                <polygon
+                  points={`${currentX},${y - 8} ${currentX + 14},${y} ${currentX},${y + 8}`}
+                  fill={theme.primary}
+                  opacity={drawProgress}
+                />
+              ) : null}
+            </g>
           );
         })}
       </svg>
@@ -110,12 +191,6 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({
       {steps.map((step, index) => {
         const x = marginX + gap * index;
         const active = index < activeSteps;
-        const appear = spring({
-          frame: frame - index * STEP_FRAMES,
-          fps,
-          config: { damping: 200 },
-        });
-        const scale = interpolate(appear, [0, 1], [0.88, 1]);
 
         return (
           <div
@@ -124,41 +199,16 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({
               position: "absolute",
               left: x,
               top: y,
-              transform: `translate(-50%, -50%) scale(${scale})`,
-              opacity: appear,
-              textAlign: "center",
+              transform: "translate(-50%, -50%)",
             }}
           >
-            <div
-              style={{
-                width: nodeRadius * 2,
-                height: nodeRadius * 2,
-                borderRadius: "50%",
-                background: active ? theme.nodeActive : theme.nodeInactive,
-                border: `${active ? 3 : 2}px solid ${active ? theme.primary : theme.primaryDim}`,
-                boxShadow: active ? `0 0 32px ${theme.primary}55` : "none",
-                margin: "0 auto",
-              }}
+            <GlowNode
+              active={active}
+              appearFrame={index * STEP_FRAMES}
+              radius={nodeRadius}
+              label={step.label}
+              sub={step.sub}
             />
-            <div
-              style={{
-                marginTop: 86,
-                color: active ? theme.text : theme.textDim,
-                fontSize: 28,
-                fontWeight: 700,
-              }}
-            >
-              {step.label}
-            </div>
-            <div
-              style={{
-                marginTop: 8,
-                color: active ? theme.textMuted : theme.textDim,
-                fontSize: 20,
-              }}
-            >
-              {step.sub}
-            </div>
           </div>
         );
       })}
@@ -171,12 +221,14 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({
             bottom: 92,
             transform: "translateX(-50%)",
             padding: "18px 42px",
-            borderRadius: 8,
-            border: `2px solid ${theme.primary}`,
-            background: "#051D31",
+            borderRadius: 12,
+            border: `1px solid ${theme.primary}88`,
+            background: `linear-gradient(135deg, #051d3188 0%, #0a284488 100%)`,
+            backdropFilter: "blur(12px)",
             color: theme.highlight,
             fontSize: 26,
             fontWeight: 700,
+            boxShadow: `0 0 40px ${theme.primary}44, inset 0 0 20px ${theme.primary}11`,
             opacity: spring({
               frame: frame - steps.length * STEP_FRAMES,
               fps,
