@@ -1,13 +1,13 @@
 # Season 1：AI Native 基础认知
 
-Season 1 建立 AI Native 基础世界观，共 7 篇正文（00 立项 + 01–06）。
+Season 1 建立 AI Native 基础世界观，共 5 篇正文（00 立项 + 01–04）。
 
 ## 目录
 
 ```text
 season 1/
 ├── 00 AI Native：立项、愿景与目标.md
-├── 01–06 …md                         # 中文正文
+├── 01–04 …md                         # 中文正文
 ├── 01 AI Native: The Software …md    # 英文版（Medium）
 ├── prompts/                          # 配图生成提示词
 ├── images/                           # 配图
