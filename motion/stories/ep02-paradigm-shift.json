@@ -1,0 +1,33 @@
+{
+  "durationInFrames": 720,
+  "hookTitle": "AI 按钮 ≠ AI Native",
+  "hookSubtitle": "如果流程责任还在用户身上，它仍然只是功能升级",
+  "comparisonTitle": "功能升级 vs 范式变化",
+  "featureUpgrade": {
+    "title": "功能升级",
+    "subtitle": "旧框架里多一个能力",
+    "items": ["AI 摘要", "AI 修图", "AI 按钮", "自动生成"]
+  },
+  "paradigmShift": {
+    "title": "范式变化",
+    "subtitle": "软件围绕目标重新组织",
+    "items": ["理解目标", "拆解任务", "调用能力", "检查结果"]
+  },
+  "caseTitle": "同一件事：把照片里的路人去掉",
+  "traditionalFlow": {
+    "title": "功能路径",
+    "subtitle": "用户在功能里找路线",
+    "steps": ["选择区域", "选修复工具", "调参数", "补边缘", "检查结果"]
+  },
+  "goalFlow": {
+    "title": "目标路径",
+    "subtitle": "用户给终点，系统找路径",
+    "steps": ["表达目标", "识别对象", "擦除人物", "补全背景", "交付结果"]
+  },
+  "responsibilityTitle": "真正变化的是：责任转移",
+  "userResponsibilities": ["选工具", "排顺序", "拼流程", "验结果"],
+  "systemResponsibilities": ["理解", "规划", "调度", "执行", "检查"],
+  "finalTitle": "判断标准只有一个",
+  "finalQuestion": "完成工作的责任，还在不在用户身上？",
+  "finalAnswer": "从“人拼流程”到“软件扛流程”"
+}

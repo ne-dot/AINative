@@ -21,12 +21,20 @@ npm run dev
 - `SpringHelloDemo` — spring + useCurrentFrame 入门
 - `AbsoluteFillDemo` — AbsoluteFill 图层叠加
 - `FlowTraditional` / `FlowAiNative` — Season 1 Flow 动画
+- `Ep02AiButtonNotNative` — 第 02 集：AI 按钮不等于 AI Native
+- `Ep02FunctionVsGoalPath` — 第 02 集：功能路径 vs 目标路径
+- `Ep02ResponsibilityShift` — 第 02 集：责任从用户侧转移到系统侧
+- `Ep02JudgmentStandard` — 第 02 集：判断真假 AI Native 的流程标准
 
 ## 渲染
 
 ```bash
 npm run render:flow-traditional
 npm run render:flow-ai-native
+npm run render:ep02-ai-button-not-native
+npm run render:ep02-function-vs-goal-path
+npm run render:ep02-responsibility-shift
+npm run render:ep02-judgment-standard
 npm run render:map-demo   # WebGL 地图需 --gl=angle --concurrency=1
 ```
 
@@ -34,7 +42,7 @@ npm run render:map-demo   # WebGL 地图需 --gl=angle --concurrency=1
 
 ## 改动画内容
 
-编辑 `stories/*.json` 里的 `steps`、`title`、`footer`，保存后在 Studio 刷新即可。
+编辑 `stories/*.json` 里的 `steps`、`title`、`footer` 或第 02 集的责任/流程文案，保存后在 Studio 刷新即可。
 
 ## 目录
 
