@@ -3,7 +3,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import math
 
 
-OUT_DIR = Path("images/series-cards")
+ROOT = Path(__file__).resolve().parents[1]
+OUT_DIR = ROOT / "doc" / "season 1" / "images" / "series-cards"
 FONT_PATH = "/System/Library/Fonts/STHeiti Medium.ttc"
 
 W, H = 900, 330

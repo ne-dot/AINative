@@ -6,7 +6,7 @@
 
 ---
 
-![封面](../images/03-01-cover.png)
+![封面](images/03-01-cover.png)
 
 很多公司都在说自己是 AI Native。
 
@@ -45,7 +45,7 @@
 
 ## 一、传统软件，是功能驱动
 
-![传统软件 VS AI Native](../images/03-02-traditional-vs-ai-native.png)
+![传统软件 VS AI Native](images/03-02-traditional-vs-ai-native.png)
 
 以前的软件都是这样工作的。
 
@@ -148,7 +148,7 @@ AI 需要理解：
 
 ## 三、第二种能力：记忆（Memory）
 
-![理解与记忆](../images/03-04-understand-memory.png)
+![理解与记忆](images/03-04-understand-memory.png)
 
 传统软件，每一次打开都像新的开始。
 
@@ -199,7 +199,7 @@ AI 办公软件知道老板喜欢什么风格。
 
 ## 四、第三种能力：工具（Tools）
 
-![工具与执行](../images/03-05-tools-action.png)
+![工具与执行](images/03-05-tools-action.png)
 
 AI 会聊天，并不等于有价值。
 
@@ -274,7 +274,7 @@ AI 可以自动：
 
 ## 六、四种能力组合在一起，会发生什么？
 
-![四个核心能力](../images/03-03-four-capabilities.png)
+![四个核心能力](images/03-03-four-capabilities.png)
 
 单独一个能力，并不可怕。
 
@@ -342,7 +342,7 @@ AI 理解你的目标。
 
 甚至成为一个持续工作的数字同事。
 
-![未来的软件形态](../images/03-06-future-software.png)
+![未来的软件形态](images/03-06-future-software.png)
 
 > **AI Native，并不是一个新的功能。**
 >

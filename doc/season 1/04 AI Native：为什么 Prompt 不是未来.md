@@ -6,7 +6,7 @@
 
 ---
 
-![封面](../images/04-01-cover.png)
+![封面](images/04-01-cover.png)
 
 过去两年，如果你接触过 AI，一定绕不开一个词：
 
@@ -64,7 +64,7 @@ Prompt 是人与 AI 沟通最直接、也是几乎唯一的方式。
 
 ## 一、Prompt 为什么会流行？
 
-![Prompt Engineering](../images/04-02-prompt-engineering-boom.png)
+![Prompt Engineering](images/04-02-prompt-engineering-boom.png)
 
 这篇文章并不是要否定 Prompt。
 
@@ -112,7 +112,7 @@ Prompt Engineering 也因此诞生。
 
 ## 二、每一次软件革命，都在降低沟通成本
 
-![人机交互演进](../images/04-03-human-computer-evolution.png)
+![人机交互演进](images/04-03-human-computer-evolution.png)
 
 很多人以为，每一次软件革命都在创造新的软件。
 
@@ -180,7 +180,7 @@ AI 也是如此。
 
 ## 三、Prompt，其实就是 AI 时代的命令行
 
-![Prompt 是 AI 时代的命令行](../images/04-04-prompt-command-line.png)
+![Prompt 是 AI 时代的命令行](images/04-04-prompt-command-line.png)
 
 理解了前面的历史，我们再来看 Prompt。
 
@@ -258,7 +258,7 @@ AI Native 也不会要求所有人掌握 Prompt Engineering。
 
 ## 五、Prompt 没有消失，只是从前台走向后台
 
-![Prompt 走向后台](../images/04-05-prompt-to-background.png)
+![Prompt 走向后台](images/04-05-prompt-to-background.png)
 
 很多人会问：
 
@@ -322,7 +322,7 @@ NotebookLM 也一样。
 
 ## 六、AI Native，不是让用户学习 Prompt
 
-![目标到执行](../images/04-06-goal-to-execution.png)
+![目标到执行](images/04-06-goal-to-execution.png)
 
 如果说过去的软件是在设计功能。
 
@@ -388,7 +388,7 @@ Prompt 会留下。
 
 而是用户的目标。
 
-![AI 理解人](../images/04-07-ai-understands-human.png)
+![AI 理解人](images/04-07-ai-understands-human.png)
 
 所以，我更愿意用一句话总结这篇文章：
 

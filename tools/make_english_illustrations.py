@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "images"
+OUT = ROOT / "doc" / "season 1" / "images"
 
 
 def font(size, bold=False):

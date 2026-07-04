@@ -8,8 +8,9 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "01 AI Native：软件时代，真的变了.md"
-OUTPUT = ROOT / "01 AI Native：软件时代，真的变了.docx"
+SEASON1 = ROOT / "doc" / "season 1"
+SOURCE = SEASON1 / "01 AI Native：软件时代，真的变了.md"
+OUTPUT = SEASON1 / "exports" / "01 AI Native：软件时代，真的变了.docx"
 
 EMU_PER_INCH = 914400
 MAX_IMAGE_WIDTH_IN = 5.9

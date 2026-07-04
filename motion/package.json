@@ -1,0 +1,21 @@
+{
+  "name": "ai-native-motion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Native 科普视频说明动画（Remotion）",
+  "scripts": {
+    "dev": "remotion studio",
+    "render:flow-traditional": "remotion render src/index.ts FlowTraditional out/flow-traditional.mp4",
+    "render:flow-ai-native": "remotion render src/index.ts FlowAiNative out/flow-ai-native.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.272",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.272"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "typescript": "^5.7.3"
+  }
+}

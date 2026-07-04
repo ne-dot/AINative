@@ -1,0 +1,12 @@
+{
+  "title": "AI Native 的使用链路",
+  "subtitle": "人表达目标，AI 理解并调度能力完成工作",
+  "durationInFrames": 180,
+  "steps": [
+    { "label": "人", "sub": "说目标" },
+    { "label": "AI", "sub": "理解意图" },
+    { "label": "调度工具", "sub": "调用能力" },
+    { "label": "得结果", "sub": "系统完成" }
+  ],
+  "footer": "核心逻辑：软件开始理解人"
+}

@@ -1,2 +1,4 @@
 .DS_Store
 dist/
+motion/node_modules/
+motion/out/

@@ -400,23 +400,13 @@ Markdown 的口语化版本。
 
 ```text
 AI Native/
-├── 00 AI Native：立项、愿景与目标.md
-├── 00 AI Native: 内容大纲.md
-│
-├── 90分版/
-│   ├── 01 AI Native：软件时代，真的变了.md
-│   ├── 02 AI Native 为什么不是一次功能升级，而是一种新的软件范式.md
-│   ├── 03 AI Native：什么是真正的 AI Native.md
-│   ├── 04 AI Native：为什么 Prompt 不是未来.md
-│   ├── 05 AI Native：为什么 AI 会成为下一代软件入口.md
-│   └── 06 AI Native：独立开发者未来的发展方向.md
-│
-├── images/
-├── prompts/
-├── PPT/
-├── Script/
-├── Video/
-└── Publish/
+├── doc/
+│   ├── 00 AI Native: 内容大纲.md
+│   ├── season 1/          # 正文、配图、视频脚本
+│   └── season 2/          # 产品层（规划中）
+├── tools/                 # 发布与生成工具
+├── motion/                # 视频说明动画
+└── dist/                  # 构建输出
 ```
 
 后续所有内容，均围绕这一体系持续扩展。

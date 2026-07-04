@@ -2,8 +2,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { Presentation, PresentationFile } from "@oai/artifact-tool";
 
-const outDir = "/Users/zj/Documents/深度/AI Native/outputs";
-const previewDir = "/private/tmp/codex-presentations/ai-native-flow/tmp/preview";
+const rootDir = path.resolve(import.meta.dirname, "..");
+const outDir = path.join(rootDir, "motion", "out");
+const previewDir = path.join(outDir, "flow-deck-preview");
 const finalPptx = path.join(outDir, "ai-native-traditional-flow-animation-keynote.pptx");
 
 await fs.mkdir(outDir, { recursive: true });
