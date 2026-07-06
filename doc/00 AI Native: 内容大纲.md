@@ -117,7 +117,7 @@ Season 1 回答：
 机会变了：做 App → 创造生态价值
 ```
 
-视频不按 4 篇长片拍，而是拆成 7-8 条干货短片。
+视频：**01 独立开篇 + 02 合并原 02/03/04 认知线**（约 7-9 分钟）；正文仍保留 4 篇。详见 [season1.md](content-plans/season1.md)。
 
 详细见：[Season 1 内容规划](content-plans/season1.md)
 

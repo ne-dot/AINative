@@ -2,6 +2,17 @@
   "durationInFrames": 720,
   "hookTitle": "AI 按钮 ≠ AI Native",
   "hookSubtitle": "如果流程责任还在用户身上，它仍然只是功能升级",
+  "aiFeaturesTitle": "很多软件现在都加了 AI 功能",
+  "aiFeaturesExamples": [
+    "AI 写作工具",
+    "AI 文案摘要",
+    "智能修图",
+    "语音助手"
+  ],
+  "workflowHookTitle": "变化还停在「某一步变快了」",
+  "workflowHookSubtitle": "软件组织工作的方式却没变",
+  "workflowBurdenTitle": "整个流程还是你在扛",
+  "workflowBurdenItems": ["找入口", "做选择", "接步骤", "检查结果"],
   "comparisonTitle": "功能升级 vs 范式变化",
   "featureUpgrade": {
     "title": "功能升级",

@@ -21,7 +21,10 @@ npm run dev
 - `SpringHelloDemo` — spring + useCurrentFrame 入门
 - `AbsoluteFillDemo` — AbsoluteFill 图层叠加
 - `FlowTraditional` / `FlowAiNative` — Season 1 Flow 动画
-- `Ep02AiButtonNotNative` — 第 02 集：AI 按钮不等于 AI Native
+- `Ep02AiFeaturesAdded` — 第 02 集：四个不同软件，各自加一项 AI 能力
+- `Ep02WorkflowStillOnUser` — 第 02 集：传统软件 + 用户流程链（纯视觉，无旁白文字）
+- `Ep02FeatureUpgrade` — 第 02 集：旧 App 加 AI + 升级特效（3D）
+- `Ep02GoalCentricOrbit` — 第 02 集：功能环绕 AI 大脑，触达目标（3D）
 - `Ep02FunctionVsGoalPath` — 第 02 集：功能路径 vs 目标路径
 - `Ep02ResponsibilityShift` — 第 02 集：责任从用户侧转移到系统侧
 - `Ep02JudgmentStandard` — 第 02 集：判断真假 AI Native 的流程标准
@@ -31,7 +34,10 @@ npm run dev
 ```bash
 npm run render:flow-traditional
 npm run render:flow-ai-native
-npm run render:ep02-ai-button-not-native
+npm run render:ep02-ai-features-added
+npm run render:ep02-workflow-still-on-user
+npm run render:ep02-feature-upgrade
+npm run render:ep02-goal-centric-orbit
 npm run render:ep02-function-vs-goal-path
 npm run render:ep02-responsibility-shift
 npm run render:ep02-judgment-standard

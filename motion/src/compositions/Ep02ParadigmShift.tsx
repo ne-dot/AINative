@@ -26,6 +26,12 @@ export type Ep02ParadigmShiftProps = {
   durationInFrames: number;
   hookTitle: string;
   hookSubtitle: string;
+  aiFeaturesTitle: string;
+  aiFeaturesExamples: string[];
+  workflowHookTitle: string;
+  workflowHookSubtitle: string;
+  workflowBurdenTitle: string;
+  workflowBurdenItems: string[];
   comparisonTitle: string;
   featureUpgrade: CardData;
   paradigmShift: CardData;
@@ -41,7 +47,8 @@ export type Ep02ParadigmShiftProps = {
 };
 
 export const EP02_PARADIGM_SHIFT_DURATION = 720;
-export const EP02_AI_BUTTON_NOT_NATIVE_DURATION = 180;
+export const EP02_AI_FEATURES_ADDED_DURATION = 210;
+export const EP02_WORKFLOW_STILL_ON_USER_DURATION = 210;
 export const EP02_FUNCTION_VS_GOAL_PATH_DURATION = 240;
 export const EP02_RESPONSIBILITY_SHIFT_DURATION = 330;
 export const EP02_JUDGMENT_STANDARD_DURATION = 210;
@@ -264,6 +271,703 @@ const Pill: React.FC<{
   </div>
 );
 
+const MaterialIcon: React.FC<{
+  name: string;
+  size?: number;
+  color?: string;
+  fill?: 0 | 1;
+}> = ({ name, size = 24, color = theme.text, fill = 0 }) => (
+  <span
+    className="material-symbols-rounded"
+    style={{
+      fontSize: size,
+      lineHeight: 1,
+      color,
+      fontVariationSettings: `"FILL" ${fill}, "wght" 500, "GRAD" 0, "opsz" 24`,
+    }}
+  >
+    {name}
+  </span>
+);
+
+const aiAppCardsMeta = [
+  {
+    aiIcon: "edit_note",
+    accent: theme.primary,
+    appIcon: "description",
+    tools: ["format_bold", "format_list_bulleted", "link"],
+    canvas: "doc" as const,
+  },
+  {
+    aiIcon: "summarize",
+    accent: theme.primary,
+    appIcon: "article",
+    tools: ["view_list", "bookmark", "share"],
+    canvas: "notes" as const,
+  },
+  {
+    aiIcon: "auto_fix_high",
+    accent: "#ffb703",
+    appIcon: "image",
+    tools: ["crop", "palette", "layers"],
+    canvas: "photo" as const,
+  },
+  {
+    aiIcon: "mic",
+    accent: "#7c5cff",
+    appIcon: "forum",
+    tools: ["chat", "settings", "person"],
+    canvas: "chat" as const,
+  },
+];
+
+const MiniAppCanvas: React.FC<{ variant: "doc" | "notes" | "photo" | "chat" }> = ({
+  variant,
+}) => {
+  if (variant === "photo") {
+    return (
+      <div
+        style={{
+          flex: 1,
+          margin: 14,
+          borderRadius: 12,
+          border: `1px solid ${theme.primaryDim}`,
+          background: "linear-gradient(160deg, rgba(18,52,88,0.9), rgba(8,28,48,0.95))",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            left: "18%",
+            bottom: 0,
+            width: "64%",
+            height: "42%",
+            borderRadius: "12px 12px 0 0",
+            background: "rgba(30, 80, 120, 0.45)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            right: "16%",
+            top: "22%",
+            width: 56,
+            height: 56,
+            borderRadius: "50%",
+            background: "rgba(255, 200, 80, 0.35)",
+          }}
+        />
+      </div>
+    );
+  }
+
+  if (variant === "chat") {
+    return (
+      <div style={{ flex: 1, margin: 14, display: "flex", flexDirection: "column", gap: 10 }}>
+        {[0.55, 0.38, 0.48].map((width, index) => (
+          <div
+            key={index}
+            style={{
+              alignSelf: index % 2 === 0 ? "flex-start" : "flex-end",
+              width: `${width * 100}%`,
+              height: 34,
+              borderRadius: 14,
+              border: `1px solid ${theme.primaryDim}`,
+              background: "rgba(12, 38, 64, 0.75)",
+            }}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  if (variant === "notes") {
+    return (
+      <div style={{ flex: 1, margin: 14, display: "flex", flexDirection: "column", gap: 10 }}>
+        {[0.92, 0.72, 0.84].map((width, index) => (
+          <div
+            key={index}
+            style={{
+              width: `${width * 100}%`,
+              height: 28,
+              borderRadius: 8,
+              background: "rgba(120, 170, 210, 0.16)",
+            }}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ flex: 1, margin: 14, display: "flex", flexDirection: "column", gap: 10 }}>
+      {[0.88, 0.76, 0.92, 0.64].map((width, index) => (
+        <div
+          key={index}
+          style={{
+            width: `${width * 100}%`,
+            height: 12,
+            borderRadius: 999,
+            background: "rgba(120, 170, 210, 0.18)",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const MiniSoftwareCard: React.FC<{
+  frame: number;
+  appearStart: number;
+  label: string;
+  meta: (typeof aiAppCardsMeta)[number];
+  width?: number;
+  height?: number;
+}> = ({ frame, appearStart, label, meta, width = 408, height = 500 }) => {
+  const appear = inOut(frame, appearStart, appearStart + 26);
+  const aiAppear = inOut(frame, appearStart + 18, appearStart + 38);
+  const compact = height <= 400;
+
+  return (
+    <div
+      style={{
+        width,
+        height,
+        opacity: appear,
+        transform: `translateY(${interpolate(appear, [0, 1], [24, 0])}px) scale(${interpolate(appear, [0, 1], [0.94, 1])})`,
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: compact ? 20 : 24,
+          border: `1px solid ${theme.primaryDim}`,
+          background: "rgba(4, 13, 27, 0.92)",
+          boxShadow: `0 24px 60px rgba(0,0,0,0.42), 0 0 36px ${meta.accent}12`,
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div
+          style={{
+            height: compact ? 38 : 44,
+            borderBottom: `1px solid ${theme.primaryDim}`,
+            background: "rgba(8, 30, 52, 0.95)",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "0 16px",
+          }}
+        >
+          {[0, 1, 2].map((dot) => (
+            <div
+              key={dot}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                background: dot === 0 ? "#ff6b6b" : dot === 1 ? "#ffd166" : "#43d17a",
+              }}
+            />
+          ))}
+          <MaterialIcon name={meta.appIcon} size={compact ? 16 : 18} color={theme.textMuted} />
+          <div style={{ flex: 1, display: "flex", gap: 6 }}>
+            {[52, 40, 48].map((w, i) => (
+              <div
+                key={i}
+                style={{
+                  width: w,
+                  height: 8,
+                  borderRadius: 999,
+                  background: "rgba(120, 170, 210, 0.22)",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div
+          style={{
+            height: compact ? 42 : 48,
+            borderBottom: `1px solid ${theme.primaryDim}`,
+            background: "rgba(6, 22, 40, 0.88)",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "0 14px",
+          }}
+        >
+          {meta.tools.map((tool) => (
+            <div
+              key={tool}
+              style={{
+                width: compact ? 30 : 34,
+                height: compact ? 30 : 34,
+                borderRadius: 9,
+                border: `1px solid ${theme.primaryDim}`,
+                background: "rgba(12, 38, 64, 0.85)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <MaterialIcon name={tool} size={compact ? 16 : 18} color={theme.textMuted} />
+            </div>
+          ))}
+        </div>
+
+        <MiniAppCanvas variant={meta.canvas} />
+
+        <div
+          style={{
+            margin: compact ? "0 12px 12px" : "0 14px 14px",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            height: compact ? 40 : 44,
+            padding: "0 14px",
+            borderRadius: 12,
+            border: `2px solid ${meta.accent}`,
+            background: `${meta.accent}18`,
+            opacity: aiAppear,
+            transform: `translateY(${interpolate(aiAppear, [0, 1], [6, 0])}px)`,
+            boxShadow: `0 0 22px ${meta.accent}33`,
+          }}
+        >
+          <MaterialIcon name={meta.aiIcon} size={compact ? 18 : 20} color={meta.accent} fill={1} />
+          <span style={{ color: theme.text, fontSize: compact ? 17 : 18, fontWeight: 700 }}>{label}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** 四个不同软件，各自加一项 AI 能力——2×2 网格，表达「很多软件都加了 AI」。 */
+const AiFeaturesAcrossSoftwareScene: React.FC<{
+  frame: number;
+  aiFeatureLabels: string[];
+}> = ({ frame, aiFeatureLabels }) => (
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      display: "grid",
+      gridTemplateColumns: "820px 820px",
+      gridTemplateRows: "380px 380px",
+      gap: 28,
+      placeContent: "center",
+    }}
+  >
+    {aiFeatureLabels.map((label, index) => (
+      <MiniSoftwareCard
+        key={label}
+        frame={frame}
+        appearStart={8 + index * 20}
+        label={label}
+        meta={aiAppCardsMeta[index] ?? aiAppCardsMeta[0]}
+        width={820}
+        height={380}
+      />
+    ))}
+  </div>
+);
+
+const userBurdenStepIcons = [
+  "travel_explore",
+  "touch_app",
+  "account_tree",
+  "task_alt",
+];
+
+/** 传统软件面板：无文字，仅界面结构 + AI 按钮 */
+const TraditionalSoftwarePanel: React.FC<{
+  frame: number;
+  width?: number;
+  height?: number;
+}> = ({ frame, width = 760, height = 560 }) => {
+  const windowIn = inOut(frame, 0, 28);
+  const aiPulse = interpolate(Math.sin(frame * 0.12), [-1, 1], [0.88, 1.1]);
+  const aiFaster = inOut(frame, 72, 96);
+  const toolIcons = ["crop", "palette", "layers", "tune", "filter_vintage"];
+
+  return (
+    <div
+      style={{
+        width,
+        height,
+        opacity: windowIn,
+        transform: `scale(${interpolate(windowIn, [0, 1], [0.94, 1])})`,
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: 28,
+          border: `1px solid ${theme.primaryDim}`,
+          background: "rgba(4, 13, 27, 0.92)",
+          boxShadow: "0 28px 80px rgba(0,0,0,0.45)",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            height: 48,
+            borderBottom: `1px solid ${theme.primaryDim}`,
+            background: "rgba(8, 30, 52, 0.95)",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "0 20px",
+          }}
+        >
+          {[0, 1, 2].map((dot) => (
+            <div
+              key={dot}
+              style={{
+                width: 12,
+                height: 12,
+                borderRadius: "50%",
+                background: dot === 0 ? "#ff6b6b" : dot === 1 ? "#ffd166" : "#43d17a",
+              }}
+            />
+          ))}
+          <div style={{ flex: 1, display: "flex", gap: 8, marginLeft: 20 }}>
+            {[72, 56, 64, 48].map((w, i) => (
+              <div
+                key={i}
+                style={{
+                  width: w,
+                  height: 9,
+                  borderRadius: 999,
+                  background: "rgba(120, 170, 210, 0.24)",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div
+          style={{
+            height: 54,
+            borderBottom: `1px solid ${theme.primaryDim}`,
+            background: "rgba(6, 22, 40, 0.88)",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "0 18px",
+          }}
+        >
+          {toolIcons.map((icon, index) => (
+            <div
+              key={icon}
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: 10,
+                border: `1px solid ${theme.primaryDim}`,
+                background: "rgba(12, 38, 64, 0.85)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                opacity: inOut(frame, 20 + index * 4, 34 + index * 4),
+              }}
+            >
+              <MaterialIcon name={icon} size={20} color={theme.textMuted} />
+            </div>
+          ))}
+        </div>
+
+        <div style={{ flex: 1, display: "flex" }}>
+          <div
+            style={{
+              width: 64,
+              borderRight: `1px solid ${theme.primaryDim}`,
+              background: "rgba(5, 18, 34, 0.9)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 12,
+              paddingTop: 16,
+            }}
+          >
+            {["brush", "ink_eraser", "gradient"].map((icon) => (
+              <div
+                key={icon}
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  border: `1px solid ${theme.primaryDim}`,
+                  background: "rgba(10, 32, 56, 0.9)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <MaterialIcon name={icon} size={20} color={theme.textMuted} />
+              </div>
+            ))}
+          </div>
+          <MiniAppCanvas variant="photo" />
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            right: 28,
+            bottom: 28,
+            transform: `scale(${aiPulse})`,
+          }}
+        >
+          <AiIconButton size={72} />
+          <div
+            style={{
+              position: "absolute",
+              top: -10,
+              right: -10,
+              width: 32,
+              height: 32,
+              borderRadius: "50%",
+              background: "#ffb703",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              opacity: aiFaster,
+              transform: `scale(${interpolate(aiFaster, [0, 1], [0.6, 1])})`,
+              boxShadow: "0 0 18px rgba(255, 183, 3, 0.55)",
+            }}
+          >
+            <MaterialIcon name="bolt" size={20} color="#050505" fill={1} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** 用户侧流程：图标 + 步骤说明（非旁白标题） */
+const UserBurdenIconFlow: React.FC<{
+  frame: number;
+  stepLabels: string[];
+}> = ({ frame, stepLabels }) => {
+  const panelIn = inOut(frame, 24, 48);
+
+  return (
+    <div
+      style={{
+        width: 400,
+        height: 560,
+        opacity: panelIn,
+        transform: `translateX(${interpolate(panelIn, [0, 1], [24, 0])}px)`,
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: 28,
+          border: `1px solid ${theme.primaryDim}`,
+          background: "rgba(4, 13, 27, 0.88)",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.38)",
+          padding: "28px 24px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "stretch",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{
+            alignSelf: "center",
+            width: 88,
+            height: 88,
+            borderRadius: "50%",
+            border: `2px solid ${theme.primary}`,
+            background: `${theme.primary}18`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            opacity: inOut(frame, 32, 52),
+            flexShrink: 0,
+          }}
+        >
+          <MaterialIcon name="person" size={44} color={theme.primary} fill={1} />
+        </div>
+
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            gap: 10,
+            marginTop: 8,
+          }}
+        >
+          {userBurdenStepIcons.map((icon, index) => {
+            const start = 44 + index * 22;
+            const appear = inOut(frame, start, start + 22);
+            const label = stepLabels[index] ?? "";
+            const isLast = index === userBurdenStepIcons.length - 1;
+
+            return (
+              <React.Fragment key={`${icon}-${label}`}>
+                <div
+                  style={{
+                    width: "100%",
+                    height: 62,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 16,
+                    padding: "0 18px",
+                    borderRadius: 16,
+                    border: `1px solid ${theme.primaryDim}`,
+                    background: "rgba(12, 38, 64, 0.88)",
+                    opacity: appear,
+                    transform: `translateY(${interpolate(appear, [0, 1], [8, 0])}px)`,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 44,
+                      height: 44,
+                      flexShrink: 0,
+                      borderRadius: 12,
+                      border: `1px solid ${theme.primaryDim}`,
+                      background: "rgba(8, 26, 46, 0.95)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <MaterialIcon name={icon} size={24} color={theme.textMuted} />
+                  </div>
+                  <span
+                    style={{
+                      flex: 1,
+                      color: theme.text,
+                      fontSize: 24,
+                      fontWeight: 700,
+                    }}
+                  >
+                    {label}
+                  </span>
+                </div>
+                {!isLast ? (
+                  <div
+                    style={{
+                      alignSelf: "center",
+                      color: theme.primary,
+                      fontSize: 22,
+                      fontWeight: 900,
+                      lineHeight: 1,
+                      opacity: inOut(frame, start + 14, start + 28),
+                    }}
+                  >
+                    ↓
+                  </div>
+                ) : null}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/** 软件未变 + 用户仍扛流程：旁白标题不进画面，流程步骤标签保留 */
+const WorkflowStillOnUserScene: React.FC<{
+  frame: number;
+  stepLabels: string[];
+}> = ({ frame, stepLabels }) => {
+  const linkIn = inOut(frame, 56, 80);
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 64,
+      }}
+    >
+      <TraditionalSoftwarePanel frame={frame} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 12,
+          opacity: linkIn,
+        }}
+      >
+        <MaterialIcon name="sync_alt" size={36} color={theme.textMuted} />
+        <div
+          style={{
+            width: 48,
+            height: 4,
+            borderRadius: 999,
+            background: `linear-gradient(90deg, ${theme.primary}, #ffb703)`,
+          }}
+        />
+      </div>
+      <UserBurdenIconFlow frame={frame} stepLabels={stepLabels} />
+    </div>
+  );
+};
+
+const AiFeatureExamples: React.FC<{
+  frame: number;
+  features: string[];
+  top?: number;
+}> = ({ frame, features, top = 360 }) => (
+  <div
+    style={{
+      position: "absolute",
+      top,
+      left: 0,
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      gap: 22,
+      flexWrap: "wrap",
+      padding: "0 120px",
+    }}
+  >
+    {features.map((feature, index) => {
+      const start = 24 + index * 18;
+      const opacity = inOut(frame, start, start + 20);
+
+      return (
+        <Pill
+          key={feature}
+          accent={index === 2 ? "#ffb703" : theme.primary}
+          style={{
+            minWidth: 190,
+            minHeight: 62,
+            fontSize: 26,
+            opacity,
+            transform: `translateY(${interpolate(opacity, [0, 1], [12, 0])}px)`,
+          }}
+        >
+          {feature}
+        </Pill>
+      );
+    })}
+  </div>
+);
+
 const AiFeatureCloud: React.FC<{ frame: number; top?: number }> = ({
   frame,
   top = 204,
@@ -450,13 +1154,19 @@ const BurdenStack: React.FC<{
   right?: number;
   top?: number;
   scale?: number;
+  title?: string;
+  items?: string[];
+  useSpring?: boolean;
 }> = ({
   frame,
   right = 250,
   top = 318,
   scale = 1,
+  title = "流程仍然在用户这边",
+  items = ["找按钮", "切页面", "排步骤", "检查结果"],
+  useSpring = true,
 }) => {
-  const items = ["找按钮", "切页面", "排步骤", "检查结果"];
+  const { fps } = useVideoConfig();
 
   return (
     <div
@@ -477,14 +1187,17 @@ const BurdenStack: React.FC<{
           marginBottom: 28,
         }}
       >
-        流程仍然在用户这边
+        {title}
       </div>
       {items.map((item, index) => {
-        const appear = spring({
-          frame: frame - 28 - index * 12,
-          fps: 30,
-          config: { damping: 160 },
-        });
+        const start = 28 + index * 12;
+        const appear = useSpring
+          ? spring({
+              frame: frame - start,
+              fps,
+              config: { damping: 160 },
+            })
+          : inOut(frame, start, start + 18);
 
         return (
           <div
@@ -492,7 +1205,9 @@ const BurdenStack: React.FC<{
             style={{
               marginBottom: 18,
               opacity: appear,
-              transform: `translateX(${interpolate(appear, [0, 1], [60, 0])}px)`,
+              transform: useSpring
+                ? `translateX(${interpolate(appear, [0, 1], [60, 0])}px)`
+                : `translateX(${interpolate(appear, [0, 1], [24, 0])}px)`,
             }}
           >
             <Pill
@@ -1119,7 +1834,10 @@ const FlowStrip: React.FC<{
   );
 };
 
-const SceneShell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+const SceneShell: React.FC<{
+  children: React.ReactNode;
+  hideFooter?: boolean;
+}> = ({ children, hideFooter = false }) => (
   <AbsoluteFill
     style={{
       backgroundColor: theme.background,
@@ -1130,76 +1848,45 @@ const SceneShell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   >
     <AnimatedBackground />
     {children}
-    <div
-      style={{
-        position: "absolute",
-        right: 42,
-        bottom: 34,
-        color: theme.textDim,
-        fontSize: 18,
-        letterSpacing: 1.2,
-      }}
-    >
-      AI Native S1E02
-    </div>
-  </AbsoluteFill>
-);
-
-export const Ep02AiButtonNotNative: React.FC<Ep02ParadigmShiftProps> = (props) => {
-  const frame = useCurrentFrame();
-  const compareIn = inOut(frame, 104, 146);
-
-  return (
-    <SceneShell>
-      <TitleBlock
-        title={props.hookTitle}
-        frame={frame}
-        startFrame={0}
-        top={58}
-      />
-      <AiFeatureCloud frame={frame} top={148} />
-      <SoftwareWindow frame={frame} left={145} top={270} scale={1.15} />
-      <BurdenStack frame={frame} right={150} top={298} scale={1.12} />
+    {!hideFooter ? (
       <div
         style={{
           position: "absolute",
-          left: "50%",
-          bottom: 74,
-          transform: `translateX(-50%) translateY(${interpolate(compareIn, [0, 1], [26, 0])}px)`,
-          opacity: compareIn,
-          display: "flex",
-          gap: 24,
-          alignItems: "center",
+          right: 42,
+          bottom: 34,
+          color: theme.textDim,
+          fontSize: 18,
+          letterSpacing: 1.2,
         }}
       >
-        <Pill
-          accent="#ffb703"
-          style={{
-            fontSize: 27,
-            minHeight: 66,
-            minWidth: 410,
-            padding: "0 28px",
-            whiteSpace: "nowrap",
-          }}
-        >
-          功能升级：旧框架里多一个按钮
-        </Pill>
-        <div style={{ color: theme.textMuted, fontSize: 34, fontWeight: 900 }}>
-          ≠
-        </div>
-        <Pill
-          accent={theme.primary}
-          style={{
-            fontSize: 27,
-            minHeight: 66,
-            minWidth: 440,
-            padding: "0 28px",
-            whiteSpace: "nowrap",
-          }}
-        >
-          AI Native：软件重新承担流程
-        </Pill>
+        AI Native S1E02
       </div>
+    ) : null}
+  </AbsoluteFill>
+);
+
+export const Ep02AiFeaturesAdded: React.FC<Ep02ParadigmShiftProps> = (props) => {
+  const frame = useCurrentFrame();
+
+  return (
+    <SceneShell hideFooter>
+      <AiFeaturesAcrossSoftwareScene
+        frame={frame}
+        aiFeatureLabels={props.aiFeaturesExamples}
+      />
+    </SceneShell>
+  );
+};
+
+export const Ep02WorkflowStillOnUser: React.FC<Ep02ParadigmShiftProps> = (props) => {
+  const frame = useCurrentFrame();
+
+  return (
+    <SceneShell hideFooter>
+      <WorkflowStillOnUserScene
+        frame={frame}
+        stepLabels={props.workflowBurdenItems}
+      />
     </SceneShell>
   );
 };
